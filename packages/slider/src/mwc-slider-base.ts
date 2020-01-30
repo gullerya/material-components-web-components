@@ -19,9 +19,10 @@ import {addHasRemoveClass, EventType, FormElement, SpecificEventListener} from '
 import {observer} from '@material/mwc-base/observer.js';
 import {MDCSliderAdapter} from '@material/slider/adapter.js';
 import MDCSliderFoundation from '@material/slider/foundation.js';
-import {eventOptions, html, property, PropertyValues, query, TemplateResult} from 'lit-element';
-import {classMap} from 'lit-html/directives/class-map.js';
-import {styleMap} from 'lit-html/directives/style-map.js';
+import {eventOptions, html, property, query, TemplateResult} from 'lit-element';
+import {classMap} from 'lit-html/directives/class-map';
+import {styleMap} from 'lit-html/directives/style-map';
+import {isRTL} from '@material/mwc-base/src/utils';
 
 const INPUT_EVENT = 'input';
 const CHANGE_EVENT = 'change';
@@ -275,7 +276,7 @@ export class SliderBase extends FormElement {
         this.trackMarkerContainerStyles['background'] = markerBkgdShorthand;
         this.requestUpdate();
       },
-      isRTL: () => getComputedStyle(this.mdcRoot).direction === 'rtl',
+      isRTL: () => isRTL(this.mdcRoot),
     };
   }
 
