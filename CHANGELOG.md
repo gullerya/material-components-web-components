@@ -17,6 +17,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - **BREAKING** `--mdc-button-letter-spacing` has been renamed to `--mdc-typography-button-letter-spacing`
 - **BREAKING** `--mdc-tab-text-transform` has been renamed to `--mdc-typography-button-text-transform`
 
+### Changed
+
+- **BREAKING:VISUAL** `mwc-tab`'s default slot now has name `icon`
+
 ## [0.13.0] - 2019-02-03
 
 ### Added
