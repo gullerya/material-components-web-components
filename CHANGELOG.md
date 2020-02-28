@@ -27,7 +27,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - **BREAKING:VISUAL** `mwc-tab`'s default slot now has name `icon`
 
-## [0.13.0] - 2019-02-03
+## [0.13.0] - 2020-02-03
 
 ### Added
 
