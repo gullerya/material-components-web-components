@@ -16,9 +16,11 @@ limitations under the License.
 */
 import {html, LitElement, property} from 'lit-element';
 import {classMap} from 'lit-html/directives/class-map.js';
+import {styleMap} from 'lit-html/directives/style-map.js';
+import {RippleAPI} from './ripple-handlers.js';
 
 /** @soyCompatible */
-export class RippleBase extends BaseElement {
+export class RippleBase extends BaseElement implements RippleAPI {
   @query('.mdc-ripple-surface') mdcRoot!: HTMLElement;
 
   @property({type: Boolean}) primary = false;
