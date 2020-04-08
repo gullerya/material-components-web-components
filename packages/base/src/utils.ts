@@ -124,8 +124,8 @@ export interface HTMLElementWithRipple extends HTMLElement {
 }
 
 export interface RippleInterface {
-  activate: (e?: Event) => void;
-  deactivate: () => void;
-  handleFocus: () => void;
-  handleBlur: () => void;
+  startPress: (e?: Event) => void;
+  endPress: () => void;
+  startFocus: () => void;
+  endFocus: () => void;
 }
