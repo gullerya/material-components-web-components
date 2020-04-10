@@ -15,18 +15,20 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-@use "@material/list" as list;
-@use "@material/theme" as theme;
-@use "@material/rtl" as rtl;
-@use "@material/typography" as typography;
-@use "@material/feature-targeting" as feature;
-@use "@material/density" as density;
-@use "@material/ripple" as ripple;
+@use "@material/list";
+@use "@material/theme";
+@use "@material/rtl";
+@use "@material/typography";
+// name is transformed by copybara so `as` is needed
+@use "@material/feature-targeting" as featuretargeting;
+@use "@material/density";
+@use "@material/ripple";
+@use "sass:map";
 
-$query: feature.all();
-$feat-structure: feature.create-target($query, structure);
-$feat-color: feature.create-target($query, color);
-$feat-animation: feature.create-target($query, animation);
+$query: featuretargeting.all();
+$feat-structure: featuretargeting.create-target($query, structure);
+$feat-color: featuretargeting.create-target($query, color);
+$feat-animation: featuretargeting.create-target($query, animation);
 $item-primary-text-baseline-height: 32px;
 $item-secondary-text-baseline-height: 20px;
 $dense-item-primary-text-baseline-height: 24px;

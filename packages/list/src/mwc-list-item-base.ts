@@ -103,7 +103,14 @@ export class ListItemBase extends LitElement {
     cb: EventListenerOrEventListenerObject;
   })[] =
       [
-        {target: this, eventNames: ['click'], cb: () => this.onClick()},
+        {
+          target: this,
+          eventNames: ['click'],
+          cb:
+              () => {
+                this.onClick();
+              }
+        },
         {
           target: this,
           eventNames: ['mouseenter'],
