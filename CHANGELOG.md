@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Added `activated` and `selected` states for ripple
 - Added documentation for ripple
 - Prefix and suffix to mwc-textfield
+- `mwc-formfield` now has a nowrap property
 
 ### Changed
 
@@ -26,6 +27,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   - Replace `ripple-directive` with lazy `mwc-ripple`
 - Refactor `mwc-ripple`
   - Normalized API to `start${state}` `end${state}` naming
+- **BREAKING:VISUAL:** mwc-list-item now internally uses mwc-ripple instead of styling ripple on host
+- `mwc-menu`'s `quick` variant now opens synchronously
 
 ### Fixed
 
