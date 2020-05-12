@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   - do not set aria-selected on incompatible roles
   - ripple will unrip if unclick or touchend is outside of list-item
 - Tabs no longer focus on initialization
+- mwc-list-item ripple color will now change based off of --mdc-ripple-color on initialization
 
 ## [v0.15.0] - 2020-05-05
 
