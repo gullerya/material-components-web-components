@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   - ripple will unrip if unclick or touchend is outside of list-item
 - Tabs no longer focus on initialization
 - mwc-list-item ripple color will now change based off of --mdc-ripple-color on initialization
+- Fix issue where textfield would throw an error when fed a non-string value
 
 ### Added
 
