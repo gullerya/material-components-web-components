@@ -17,12 +17,12 @@ limitations under the License.
 import {applyPassive} from '@material/dom/events.js';
 import {addHasRemoveClass, EventType, FormElement, SpecificEventListener} from '@material/mwc-base/form-element.js';
 import {observer} from '@material/mwc-base/observer.js';
+import {isRTL} from '@material/mwc-base/utils.js';
 import {MDCSliderAdapter} from '@material/slider/adapter.js';
 import MDCSliderFoundation from '@material/slider/foundation.js';
 import {eventOptions, html, property, PropertyValues, query, TemplateResult} from 'lit-element';
-import {classMap} from 'lit-html/directives/class-map';
-import {styleMap} from 'lit-html/directives/style-map';
-import {isRTL} from '@material/mwc-base/src/utils';
+import {classMap} from 'lit-html/directives/class-map.js';
+import {styleMap} from 'lit-html/directives/style-map.js';
 
 const INPUT_EVENT = 'input';
 const CHANGE_EVENT = 'change';
