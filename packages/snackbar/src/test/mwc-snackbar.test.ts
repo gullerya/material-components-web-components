@@ -18,7 +18,7 @@
 import {Snackbar} from '@material/mwc-snackbar';
 import {html, TemplateResult} from 'lit-html';
 
-import {Fake, fixture, rafPromise, TestFixture} from '../../../../test/src/util/helpers';
+import {Fake, fixture, ieSafeKeyboardEvent, rafPromise, TestFixture} from '../../../../test/src/util/helpers';
 
 interface SnackBarProps {
   timeoutMs: number;
@@ -34,7 +34,7 @@ const snackBar = (propsInit: Partial<SnackBarProps>) => {
   return html`
     <mwc-snackbar
       .timeoutMs=${propsInit.timeoutMs ?? -1}
-      ?closeOnEscape=${propsInit.closeOnEscape === true}
+      .closeOnEscape=${propsInit.closeOnEscape === true}
       .labelText=${propsInit.labelText ?? ''}>
       ${propsInit.actionElement ?? html``}
       ${propsInit.dismissElement ?? html``}
@@ -65,7 +65,7 @@ suite('mwc-snackbar', () => {
 
   teardown(() => {
     window.setTimeout = originalSetTimeout;
-    element.remove();
+    element.parentNode!.removeChild(element);
   });
 
   suite('basic', () => {

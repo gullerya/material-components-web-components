@@ -112,14 +112,14 @@ $dense-item-primary-text-baseline-height: 24px;
 }
 
 .mdc-list-item__graphic {
-  @include feature.targets($feat-structure) {
+  @include featuretargeting.targets($feat-structure) {
     flex-shrink: 0;
     align-items: center;
     justify-content: center;
     fill: currentColor;
   }
 
-  @include feature.targets($feat-structure) {
+  @include featuretargeting.targets($feat-structure) {
     display: inline-flex;
   }
 
@@ -143,11 +143,11 @@ $dense-item-primary-text-baseline-height: 24px;
   }
   // stylelint-enable selector-class-pattern
 
-  @include feature.targets($feat-structure) {
+  @include featuretargeting.targets($feat-structure) {
     @include rtl.reflexive-property(margin, auto, 0, ":host");
   }
 
-  @include feature.targets($feat-color) {
+  @include featuretargeting.targets($feat-color) {
     @include theme.prop(color, text-hint-on-background);
   }
 
@@ -164,7 +164,7 @@ $dense-item-primary-text-baseline-height: 24px;
   // toggle corresponding checkbox / radio input.
   ::slotted([for]),
   &[for] {
-    @include feature.targets($feat-structure) {
+    @include featuretargeting.targets($feat-structure) {
       pointer-events: none;
     }
   }
@@ -178,7 +178,7 @@ $dense-item-primary-text-baseline-height: 24px;
     $query: $query
   );
 
-  @include feature.targets($feat-structure) {
+  @include featuretargeting.targets($feat-structure) {
     display: block;
   }
 }
@@ -191,13 +191,13 @@ $dense-item-primary-text-baseline-height: 24px;
     $query: $query
   );
 
-  @include feature.targets($feat-structure) {
+  @include featuretargeting.targets($feat-structure) {
     display: block;
   }
 
   // stylelint-disable plugin/selector-bem-pattern
   .mdc-list--dense & {
-    @include feature.targets($feat-structure) {
+    @include featuretargeting.targets($feat-structure) {
       font-size: inherit;
     }
   }
@@ -209,7 +209,7 @@ $dense-item-primary-text-baseline-height: 24px;
 // Override anchor tag styles for the use-case of a list being used for navigation
 // stylelint-disable selector-max-type,selector-no-qualifying-type
 * ::slotted(a), a {
-  @include feature.targets($feat-structure) {
+  @include featuretargeting.targets($feat-structure) {
     color: inherit;
     text-decoration: none;
   }
@@ -217,12 +217,12 @@ $dense-item-primary-text-baseline-height: 24px;
 
 :host([twoline]) {
   .mdc-list-item__text {
-    @include feature.targets($feat-structure) {
+    @include featuretargeting.targets($feat-structure) {
       align-self: flex-start;
     }
   }
 
-  @include feature.targets($feat-structure) {
+  @include featuretargeting.targets($feat-structure) {
     height: 72px;
   }
 }
@@ -236,7 +236,7 @@ $dense-item-primary-text-baseline-height: 24px;
 :host([disabled]) {
   .mdc-list-item__text {
     ::slotted(*) {
-      @include feature.targets($feat-color) {
+      @include featuretargeting.targets($feat-color) {
         opacity: list.$text-disabled-opacity;
       }
     }
@@ -246,7 +246,7 @@ $dense-item-primary-text-baseline-height: 24px;
   .mdc-list-item__primary-text,
   .mdc-list-item__secondary-text {
     ::slotted(*) {
-      @include feature.targets($feat-color) {
+      @include featuretargeting.targets($feat-color) {
         @include theme.prop(color, list.$text-disabled-color);
       }
     }
@@ -254,27 +254,27 @@ $dense-item-primary-text-baseline-height: 24px;
 }
 
 .mdc-list-item__secondary-text ::slotted(*) {
-  @include feature.targets($feat-color) {
+  @include featuretargeting.targets($feat-color) {
     @include theme.prop(color, text-secondary-on-background);
   }
 }
 
 .mdc-list-item__graphic ::slotted(*) {
-  @include feature.targets($feat-color) {
+  @include featuretargeting.targets($feat-color) {
     @include theme.prop(background-color, transparent);
     @include theme.prop(color, text-icon-on-background);
   }
 }
 
 .mdc-list-group__subheader ::slotted(*) {
-  @include feature.targets($feat-color) {
+  @include featuretargeting.targets($feat-color) {
     @include theme.prop(color, text-primary-on-background);
   }
 }
 
 :host([graphic="avatar"]) {
   .mdc-list-item__graphic {
-    @include feature.targets($feat-structure) {
+    @include featuretargeting.targets($feat-structure) {
       @include graphic-size_(var(--mdc-list-item-graphic-size, 40px));
 
       ::slotted(*) {

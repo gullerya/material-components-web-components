@@ -18,7 +18,7 @@
 import {Tab} from '@material/mwc-tab';
 import {html} from 'lit-html';
 
-import {Fake, fixture, TestFixture} from '../../../../test/src/util/helpers';
+import {Fake, fixture, rafPromise, TestFixture} from '../../../../test/src/util/helpers';
 
 interface TabProps {
   label: string;
@@ -32,8 +32,8 @@ const defaultTab = html`<mwc-tab></mwc-tab>`;
 const tab = (propsInit: Partial<TabProps>) => {
   return html`
     <mwc-tab
-      ?minWidth=${propsInit.minWidth === true}
-      ?stacked=${propsInit.stacked === true}
+      .minWidth=${propsInit.minWidth === true}
+      .stacked=${propsInit.stacked === true}
       icon=${propsInit.icon ?? ''}
       label=${propsInit.label ?? ''}>
     </mwc-tab>
@@ -81,7 +81,7 @@ suite('mwc-tab', () => {
     setup(async () => {
       fixt = await fixture(tab({minWidth: true}));
       element = fixt.root.querySelector('mwc-tab')!;
-      await element.updateComplete;
+      await rafPromise();
     });
 
     test('sets the correct classes', () => {

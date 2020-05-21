@@ -12,6 +12,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   - get rid of mobile os glow on tap
   - do not set aria-selected on incompatible roles
   - ripple will unrip if unclick or touchend is outside of list-item
+- `mwc-list`
+  - fixed regression in list that broke mwc-select in IE or shady dom.
 - Tabs no longer focus on initialization
 - mwc-list-item ripple color will now change based off of --mdc-ripple-color on initialization
 - Fix issue where textfield would throw an error when fed a non-string value
@@ -127,7 +129,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - **BREAKING** `mwc-ripple` now requires implementing event handlers manually in the parent component.
 - **BREAKING** Components must now import `@observer` manually from `@material/mwc-base/observer`;
 
-### Changed
+### Fixed
 
 - Setting `scrollTarget` on `mwc-top-app-bar` will update listeners
 - Fixed sass imports of `_index.scss` files

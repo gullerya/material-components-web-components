@@ -119,7 +119,7 @@ suite('mwc-button', () => {
         'setting `trailingIcon` displays icon in a trailing position',
         async () => {
           element.trailingIcon = true;
-          await element.updateComplete;
+          await rafPromise();
 
           const leadingIcon = element.shadowRoot!.querySelector(
               `.leading-icon ${ICON_SELECTOR}`);

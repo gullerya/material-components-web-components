@@ -53,7 +53,7 @@ export abstract class MenuSurfaceBase extends BaseElement {
 
   @query('.mdc-menu-surface') mdcRoot!: HTMLDivElement;
 
-  @query('slot') slotElement!: HTMLSlotElement;
+  @query('slot') slotElement!: HTMLSlotElement|null;
 
   @property({type: Boolean})
   @observer(function(this: MenuSurfaceBase, isAbsolute: boolean) {

@@ -34,7 +34,7 @@ const defaultDrawer = html`<mwc-drawer></mwc-drawer>`;
 const drawer = (propsInit: Partial<DrawerProps>) => {
   return html`
     <mwc-drawer
-      ?hasHeader=${propsInit.hasHeader === true}
+      .hasHeader=${propsInit.hasHeader === true}
       .type=${propsInit.type ?? ''}>
     </mwc-drawer>
   `;

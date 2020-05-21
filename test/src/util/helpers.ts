@@ -17,6 +17,10 @@ limitations under the License.
 import {customElement, html, LitElement, property} from 'lit-element';
 import {render, TemplateResult} from 'lit-html';
 
+interface HasKeyCode {
+  keyCode: number;
+}
+
 declare global {
   interface Window {
     tachometerResult: undefined|number;
@@ -198,3 +202,14 @@ export const waitForEvent = (el: Element, ev: string) => new Promise((res) => {
     res();
   }, {once: true});
 });
+
+export const ieSafeKeyboardEvent = (type: string, keycode: number) => {
+  // IE es5 fix
+  const init = {detail: 0, bubbles: true, cancelable: true, composed: true};
+  const ev = new CustomEvent(type, init);
+
+  // esc key
+  (ev as unknown as HasKeyCode).keyCode = keycode;
+
+  return ev;
+}

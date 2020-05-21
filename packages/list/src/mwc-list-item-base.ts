@@ -158,10 +158,9 @@ export class ListItemBase extends LitElement {
     const text = this.renderText();
     const graphic = this.graphic ? this.renderGraphic() : html``;
     const meta = this.hasMeta ? this.renderMeta() : html``;
-    const ripple = this.renderRipple();
 
     return html`
-      ${ripple}
+      ${this.renderRipple()}
       ${graphic}
       ${text}
       ${meta}`;

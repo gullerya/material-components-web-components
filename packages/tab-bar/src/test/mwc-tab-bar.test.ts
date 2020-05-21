@@ -65,13 +65,17 @@ suite('mwc-tab-bar', () => {
     test('activates but does not focus tab on init', async () => {
       fixt.remove();
       fixt = await fixture(defaultTabBarWithTabs);
-      const body = document.body;
       const tab = fixt.root.querySelector('mwc-tab')!;
       element = fixt.root.querySelector('mwc-tab-bar')!;
 
       await rafPromise();
 
-      assert.equal(document.activeElement, body);
+      const focusedEl = document.activeElement;
+      // IE is null every other browser is body
+      const bodyOrNullIsFocused =
+          focusedEl === document.body || focusedEl === null;
+
+      assert.isTrue(bodyOrNullIsFocused);
       assert.isTrue(tab.active);
       assert.equal(element.activeIndex, 0);
     });
@@ -111,7 +115,10 @@ suite('mwc-tab-bar', () => {
       const rightEv = ieSafeKeyboardEvent('keydown', 39);
       bar.dispatchEvent(rightEv);
       assert.equal(fixt.root.activeElement, tab2);
-      bar.dispatchEvent(new KeyboardEvent('keydown', {key: 'ArrowLeft'}));
+
+      // left arrow keycode
+      const leftEv = ieSafeKeyboardEvent('keydown', 37);
+      bar.dispatchEvent(leftEv);
       assert.equal(fixt.root.activeElement, tab1);
     });
   });

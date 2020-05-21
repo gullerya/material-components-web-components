@@ -24,7 +24,7 @@ import {Menu} from '@material/mwc-menu';
 import {Corner, MenuCorner, MenuSurface} from '@material/mwc-menu/mwc-menu-surface';
 import {html, TemplateResult} from 'lit-html';
 
-import {Fake, fixture, rafPromise, TestFixture} from '../../../../test/src/util/helpers';
+import {Fake, fixture, ieSafeKeyboardEvent, rafPromise, TestFixture} from '../../../../test/src/util/helpers';
 
 const defaultMenu = html`<mwc-menu></mwc-menu>`;
 const defaultSurface = html`<mwc-menu-surface></mwc-menu-surface>`;
@@ -60,21 +60,25 @@ interface SurfaceProps {
   menuCorner: MenuCorner;
 }
 
+type WindowWithShadyDOM = {
+  ShadyDOM?: {inUse: boolean};
+}&Window;
+
 const menu = (propsInit: Partial<MenuProps>) => {
   return html`
     <mwc-menu
-      ?open=${propsInit.open === true}
-      ?quick=${propsInit.quick === true}
-      ?wrapFocus=${propsInit.wrapFocus === true}
+      .open=${propsInit.open === true}
+      .quick=${propsInit.quick === true}
+      .wrapFocus=${propsInit.wrapFocus === true}
       .innerRole=${propsInit.innerRole ?? 'menu'}
       .corner=${propsInit.corner ?? 'TOP_START'}
       .x=${propsInit.x ?? null}
       .y=${propsInit.y ?? null}
-      ?absolute=${propsInit.absolute === true}
-      ?multi=${propsInit.multi === true}
-      ?activatable=${propsInit.activatable === true}
-      ?fixed=${propsInit.fixed === true}
-      ?fullwidth=${propsInit.fullwidth === true}
+      .absolute=${propsInit.absolute === true}
+      .multi=${propsInit.multi === true}
+      .activatable=${propsInit.activatable === true}
+      .fixed=${propsInit.fixed === true}
+      .fullwidth=${propsInit.fullwidth === true}
       .forceGroupSelection=${propsInit.forceGroupSelection === true}>
       ${propsInit.contents ?? html``}
     </mwc-menu>
@@ -284,7 +288,7 @@ suite('mwc-menu', () => {
       const item1 = element.children[1] as ListItem;
       item0.click();
       item1.click();
-      const items = element.selected!;
+      const items = element.selected! as ListItem[];
       assert.equal(items[0], item0);
       assert.equal(items[1], item1);
     });
@@ -510,7 +514,11 @@ suite('mwc-menu-surface', () => {
       element.show();
       await element.updateComplete;
       await rafPromise();
-      surface.dispatchEvent(new KeyboardEvent('keydown', {key: 'Escape'}));
+
+      // escape keycode
+      const escEv = ieSafeKeyboardEvent('keydown', 27);
+      surface.dispatchEvent(escEv);
+
       await rafPromise();
       await element.updateComplete;
       assert.isFalse(element.open);
@@ -648,29 +656,40 @@ suite('mwc-menu-surface', () => {
   });
 
   suite('focus', () => {
-    let focusedElement;
-    let innerFocusedElement;
+    let focusedElement: HTMLElement;
+    let innerFocusedElement: HTMLElement;
 
     setup(async () => {
       focusedElement = document.createElement('input');
-      innerFocusedElement = document.createElement('input');
       document.body.appendChild(focusedElement);
-      fixt = await fixture(surface({quick: true}));
+      const contents = html`<input>`;
+      fixt = await fixture(surface({quick: true, contents}));
       element = fixt.root.querySelector('mwc-menu-surface')!;
-      element.appendChild(innerFocusedElement);
+      innerFocusedElement = fixt.root.querySelector('input')!;
       await element.updateComplete;
     });
 
     teardown(() => {
-      focusedElement.remove();
+      focusedElement.parentNode!.removeChild(focusedElement);
     });
 
     test('focus is restored after closing', async () => {
+      const w: WindowWithShadyDOM = window;
+      if (w.ShadyDOM && w.ShadyDOM.inUse) {
+        /*
+         * skip tests in IE due to rendering bug. Absolute div will not show
+         * unless mouse interaction causes it to render. This means that the
+         * inner input cannot be focused.
+         */
+        return;
+      }
+
       focusedElement.focus();
       element.show();
       await element.updateComplete;
       await rafPromise();
       innerFocusedElement.focus();
+      await rafPromise();
       assert.equal(document.activeElement, fixt);
       assert.equal(fixt.shadowRoot!.activeElement, innerFocusedElement);
       element.close();
