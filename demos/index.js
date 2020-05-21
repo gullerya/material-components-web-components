@@ -15,7 +15,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 import { LitElement, html, css } from 'lit-element/lit-element.js';
-import { style as listStyle } from './style/mwc-list-item-css.js';
+import '@material/mwc-list';
+import '@material/mwc-list/mwc-list-item';
 
 class DemoView extends LitElement {
   static get styles() {
@@ -110,6 +111,12 @@ class DemoView extends LitElement {
         secondary: 'Multi-selection controls',
         href: 'checkbox/',
         img: 'https://material-components-web.appspot.com/images/ic_selection_control_24px.svg',
+      },
+      {
+        name: 'Chip',
+        secondary: 'Chip controls',
+        href: 'chip/',
+        img: 'https://material-components-web.appspot.com/images/ic_component_24px.svg',
       },
       {
         name: 'Drawer',
